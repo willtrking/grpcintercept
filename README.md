@@ -47,3 +47,8 @@ See the examples folder for more details
 grpcintercept provides 2 interfaces which you need to implement. One holds data for middleware setup (`Interceptor`), and has a `Init` method which generates a new middleware container (`InterceptorData`) on each gRPC service call. The middleware container implements a `Close` method which is called after each gRPC service call to run any necessary container cleanup.
 
 See the examples folder for more details
+
+#### TODO
+Streaming support
+
+Use AST instead of basic string parsing
