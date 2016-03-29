@@ -4,7 +4,7 @@ Server Example
 Full featured sample server which attaches a `github.com/gocraft/dbr` session to each gRPC service call
 
 Run with
-`go run main.go` inside the `server` folder
+`go run main.go`
 
 gRPC stubs created with
 
