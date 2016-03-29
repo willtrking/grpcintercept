@@ -1,7 +1,9 @@
 Server Example
 ===========
 
-Full featured sample server which attaches a `github.com/gocraft/dbr` session to each gRPC service call
+Full featured sample server which attaches a postgres `github.com/gocraft/dbr` session to each gRPC service call.
+
+Postgres through `github.com/lib/pq`
 
 Run with
 `go run main.go`
