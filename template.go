@@ -8,7 +8,9 @@ package {{.Package}}
 
 import (
   "google.golang.org/grpc/grpclog"
+  {{ if .IsMainFile }}
   "google.golang.org/grpc"
+  {{ end }}
   "golang.org/x/net/context"
   grpcintercept "github.com/willtrking/grpcintercept/types"
 
