@@ -1,7 +1,7 @@
 grpcintercept
 ===========
 
-Generates boilerplate to help use the interceptor/middleware pattern with gRPC service calls.
+Generates boilerplate to help use the interceptor/middleware pattern with gRPC server service calls.
 Desgined to work alongside the gRPC protobuf stub generation system, although this is not required.
 
 #### Installation
@@ -32,6 +32,13 @@ your with your go:generate comment.
 
 For example, if I have a `AccountManagementServer` in my stub file, which has a `RegisterAccountManagementServer` function, I would import that stub file with something like
 `pb example/account/protobuf` and my REGISTERCALL would be `pb.RegisterAccountManagementServer`
+
+
+
+
+Each generated file will have a `RegisterService` function which you should use in your server registration.
+
+
 
 
 See the examples folder for more details
