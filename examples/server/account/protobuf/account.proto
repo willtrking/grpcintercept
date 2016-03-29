@@ -1,0 +1,25 @@
+
+syntax = "proto3";
+
+package protobuf;
+
+
+//Interface for account management
+service AccountManagement {
+
+  //Retrieve an account by ID
+  rpc GetAccount(Account) returns (Account) {}
+
+  //Create an account
+  rpc CreateAccount(Account) returns (Account) {}
+}
+
+
+//Account object
+message Account {
+
+  int64 id = 1;
+
+  string name = 2;
+  string email = 3;
+}

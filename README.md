@@ -34,11 +34,16 @@ For example, if I have a `AccountManagementServer` in my stub file, which has a 
 `pb example/account/protobuf` and my REGISTERCALL would be `pb.RegisterAccountManagementServer`
 
 
-
-
 Each generated file will have a `RegisterService` function which you should use in your server registration.
 
 
+Additionally each of your service functions must include a third argument, which takes in
+a grpcintercept intercept type, see Types below.
 
+See the examples folder for more details
+
+#### Types
+
+grpcintercept provides 2 interfaces which you need to implement. One holds data for middleware setup (`Interceptor`), and has a `Init` method which generates a new middleware container (`InterceptorData`) on each gRPC service call. The middleware container implements a `Close` method which is called after each gRPC service call to run any necessary container cleanup.
 
 See the examples folder for more details
