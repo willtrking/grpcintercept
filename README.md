@@ -26,3 +26,12 @@ gRPC protobuf stub file.
 
 
 REGISTERCALL must be the server registration call generated in your gRPC protobuf stub file.
+This should include the package in dot format, note that that package MUST be used in the file
+your with your go:generate comment.
+
+
+For example, if I have a `AccountManagementServer` in my stub file, which has a `RegisterAccountManagementServer` function, I would import that stub file with something like
+`pb example/account/protobuf` and my REGISTERCALL would be `pb.RegisterAccountManagementServer`
+
+
+See the examples folder for more complete samples
