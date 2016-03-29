@@ -34,4 +34,4 @@ For example, if I have a `AccountManagementServer` in my stub file, which has a 
 `pb example/account/protobuf` and my REGISTERCALL would be `pb.RegisterAccountManagementServer`
 
 
-See the examples folder for more complete samples
+See the examples folder for more details
