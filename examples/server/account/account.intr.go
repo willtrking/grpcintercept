@@ -26,21 +26,6 @@ func RegisterService(s *grpc.Server, i grpcintercept.Interceptor) {
 	pb.RegisterAccountManagementServer(s, srv)
 }
 
-func (a *AccountServiceInterceptor) GetAccount(ctx context.Context, account *pb.Account) (*pb.Account, error) {
-	di, _ := a.i.Init()
-
-	defer func(di grpcintercept.InterceptorData) {
-
-		ce := di.Close()
-		if ce != nil {
-			grpclog.Println("Failed to close InterceptorData on GetAccount ", ce)
-		}
-
-	}(di)
-
-	return a.service.GetAccount(ctx, account, di.(*icpt.InterceptorStore))
-}
-
 func (a *AccountServiceInterceptor) CreateAccount(ctx context.Context, account *pb.Account) (*pb.Account, error) {
 	di, _ := a.i.Init()
 
@@ -54,4 +39,19 @@ func (a *AccountServiceInterceptor) CreateAccount(ctx context.Context, account *
 	}(di)
 
 	return a.service.CreateAccount(ctx, account, di.(*icpt.InterceptorStore))
+}
+
+func (a *AccountServiceInterceptor) GetAccount(ctx context.Context, account *pb.Account) (*pb.Account, error) {
+	di, _ := a.i.Init()
+
+	defer func(di grpcintercept.InterceptorData) {
+
+		ce := di.Close()
+		if ce != nil {
+			grpclog.Println("Failed to close InterceptorData on GetAccount ", ce)
+		}
+
+	}(di)
+
+	return a.service.GetAccount(ctx, account, di.(*icpt.InterceptorStore))
 }

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"flag"
+	"fmt"
 	"net"
 
 	"google.golang.org/grpc"
@@ -18,41 +18,39 @@ var (
 	port    = flag.Int("port", 10000, "The server port")
 )
 
-
 func main() {
 
-  //Parse our flags
+	//Parse our flags
 	flag.Parse()
 
-  //Setup our database connection
+	//Setup our database connection
 	conn, cerr := db.GetConnection()
 
-  if cerr != nil{
-    panic(cerr)
-  }
+	if cerr != nil {
+		panic(cerr)
+	}
 
-  //Setup our interceptor generation object
+	//Setup our interceptor generation object
 	interceptor := new(icpt.InitInterceptor)
-  //Attach database connection to it
+	//Attach database connection to it
 	interceptor.Conn = conn
 
-	lis,err :=net.Listen("tcp", fmt.Sprintf("%s:%d", *address, *port))
+	lis, err := net.Listen("tcp", fmt.Sprintf("%s:%d", *address, *port))
 
 	if err != nil {
 		grpclog.Fatalf("failed to listen: %v", err)
 	}
-	grpclog.Println(" - LISTENING ON",  fmt.Sprintf("%s:%d", *address, *port))
-
+	grpclog.Println(" - LISTENING ON", fmt.Sprintf("%s:%d", *address, *port))
 
 	var opts []grpc.ServerOption
 	grpcServer := grpc.NewServer(opts...)
 
 	grpclog.Println(" - ATTACHING SERVICES")
 
-  //Call the generated RegisterService call with our gRPC server
-  //and our interceptor generation object
-	account.RegisterService(grpcServer,interceptor)
-  grpclog.Println("  - ATTACHED AccountService Service")
+	//Call the generated RegisterService call with our gRPC server
+	//and our interceptor generation object
+	account.RegisterService(grpcServer, interceptor)
+	grpclog.Println("  - ATTACHED AccountService Service")
 	grpclog.Println("SERVING")
 
 	grpcServer.Serve(lis)
